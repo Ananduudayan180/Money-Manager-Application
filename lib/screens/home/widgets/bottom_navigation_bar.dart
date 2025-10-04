@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:money_manager/home/screens/screen_home.dart';
+import 'package:money_manager/screens/home/screen_home.dart';
 
 class HomeBottomNavigationBar extends StatelessWidget {
   const HomeBottomNavigationBar({super.key});

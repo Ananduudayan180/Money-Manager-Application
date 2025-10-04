@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:money_manager/home/screens/screen_home.dart';
+import 'package:money_manager/screens/home/screen_home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'OpenSans',
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
       ),
-      home: const ScreenHome(),
+      home: ScreenHome(),
     );
   }
 }
