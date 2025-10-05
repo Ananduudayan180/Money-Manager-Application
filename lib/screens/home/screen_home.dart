@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:money_manager/screens/category/add_category/add_category_popup.dart';
 import 'package:money_manager/screens/category/screen_category.dart';
 import 'package:money_manager/screens/home/widgets/bottom_navigation_bar.dart';
 import 'package:money_manager/screens/transactions/screen_transactions.dart';
@@ -20,7 +21,14 @@ class ScreenHome extends StatelessWidget {
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          if (bottomNavigationIndex.value == 0) {
+            //  add transaction
+          } else {
+            // add category
+            addCategory(context);
+          }
+        },
         backgroundColor: Colors.purple,
         child: Icon(Icons.add, color: Colors.white),
       ),
