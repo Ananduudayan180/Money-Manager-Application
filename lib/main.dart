@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:money_manager/db_functions/category_db/category_db.dart';
+
 import 'package:money_manager/screens/home/screen_home.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await CategoryDb().initializeFlutter();
   runApp(const MyApp());
 }
 
