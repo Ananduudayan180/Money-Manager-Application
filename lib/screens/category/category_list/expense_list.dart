@@ -16,7 +16,10 @@ class ExpenseList extends StatelessWidget {
             return ListTile(
               title: Text(category[index].name),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  final id = category[index].id;
+                  CategoryDb().deleteCategory(id);
+                },
                 icon: Icon(Icons.delete, color: Colors.red),
               ),
             );

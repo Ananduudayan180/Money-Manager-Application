@@ -13,8 +13,8 @@ class ScreenCategory extends StatefulWidget {
 class _ScreenCategoryState extends State<ScreenCategory> {
   @override
   void initState() {
-    CategoryDb().refreshUI();
     super.initState();
+    CategoryDb().refreshUI();
   }
 
   @override
