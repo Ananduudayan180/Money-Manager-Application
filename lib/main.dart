@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:money_manager/db_functions/category_db/category_db.dart';
-
 import 'package:money_manager/screens/home/screen_home.dart';
+import 'package:money_manager/screens/transactions/add_transactions/add_transactions_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,6 +21,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
       ),
       home: ScreenHome(),
+      routes: {
+        'AddTransactionsScreen': (ctx) {
+          return AddTransactionsScreen();
+        },
+      },
     );
   }
 }

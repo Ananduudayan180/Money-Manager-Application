@@ -24,6 +24,7 @@ class ScreenHome extends StatelessWidget {
         onPressed: () {
           if (bottomNavigationIndex.value == 0) {
             //  add transaction
+            Navigator.of(context).pushNamed('AddTransactionsScreen');
           } else {
             // add category
             addCategory(context);
