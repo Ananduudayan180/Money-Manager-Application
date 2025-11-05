@@ -140,8 +140,8 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
     DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(2025, 9, 10),
-      lastDate: DateTime(2025, 10, 15),
+      firstDate: DateTime.now().subtract(Duration(days: 30)),
+      lastDate: DateTime.now().add(Duration(days: 3)),
     );
 
     if (pickedDate != null) {
