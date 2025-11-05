@@ -1,5 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:money_manager/models/category_model/category_model.dart';
+part 'transaction_model.g.dart';
 
 @HiveType(typeId: 3)
 class TransactionModel {
