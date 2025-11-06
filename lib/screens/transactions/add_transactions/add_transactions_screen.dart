@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:money_manager/db_functions/category_db/category_db.dart';
 import 'package:money_manager/models/category_model/category_model.dart';
+import 'package:money_manager/models/transactions_model/transaction_model.dart';
 
 class AddTransactionsScreen extends StatefulWidget {
   const AddTransactionsScreen({super.key});
@@ -15,7 +16,8 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
   String _selectedDate = 'Select Date';
   CategoryType _selectedRadioButton = CategoryType.income;
   String? _dropdownValue;
-
+  DateTime? pickedDate;
+  CategoryModel? selectedCategoryModel;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,6 +101,9 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
                           return DropdownMenuItem(
                             value: value.name,
                             child: Text(value.name),
+                            onTap: () {
+                              selectedCategoryModel = value;
+                            },
                           );
                         })
                         .toList(),
@@ -121,7 +126,9 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.purple,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      addNewTransaction();
+                    },
                     child: Text(
                       'Submit',
                       style: TextStyle(color: Colors.white),
@@ -137,7 +144,7 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
   }
 
   datePicker(context) async {
-    DateTime? pickedDate = await showDatePicker(
+    pickedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime.now().subtract(Duration(days: 30)),
@@ -154,5 +161,37 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
         _selectedDate = 'Select Date';
       });
     }
+  }
+
+  void addNewTransaction() {
+    double amount;
+    final purposeText = _purposeController.text;
+    final amountText = _amountController.text;
+    if (purposeText.isEmpty) {
+      return;
+    }
+    if (amountText.isEmpty) {
+      return;
+    }
+    if (_dropdownValue == null) {
+      return;
+    }
+    if (_selectedDate == 'Select Date') {
+      return;
+    }
+    try {
+      amount = double.parse(amountText);
+    } catch (e) {
+      return;
+    }
+
+    final transaction = TransactionModel(
+      purpose: purposeText,
+      amount: amount,
+      date: pickedDate!,
+      type: _selectedRadioButton,
+      category: selectedCategoryModel!,
+    );
+    Navigator.of(context).pop();
   }
 }
