@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:money_manager/db_functions/category_db/category_db.dart';
+import 'package:money_manager/db_functions/transactions_db/transaction_db.dart';
 import 'package:money_manager/screens/home/screen_home.dart';
 import 'package:money_manager/screens/transactions/add_transactions/add_transactions_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CategoryDb().initializeFlutter();
+  await TransactionDb().transactionInitializeFlutter();
   runApp(const MyApp());
 }
 
