@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:money_manager/db_functions/category_db/category_db.dart';
+import 'package:money_manager/db_functions/transactions_db/transaction_db.dart';
 import 'package:money_manager/models/category_model/category_model.dart';
 import 'package:money_manager/models/transactions_model/transaction_model.dart';
 
@@ -192,6 +193,8 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
       type: _selectedRadioButton,
       category: selectedCategoryModel!,
     );
+
+    TransactionDb().insertTransaction(transaction);
     Navigator.of(context).pop();
   }
 }
