@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:money_manager/db_functions/category_db/category_db.dart';
 import 'package:money_manager/db_functions/transactions_db/transaction_db.dart';
 import 'package:money_manager/models/transactions_model/transaction_model.dart';
 
@@ -9,6 +10,7 @@ class ScreenTransactions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TransactionDb().refreshUI();
+    CategoryDb().refreshUI();
     return ValueListenableBuilder(
       valueListenable: TransactionDb().newTransactionListNotifier,
       builder:
