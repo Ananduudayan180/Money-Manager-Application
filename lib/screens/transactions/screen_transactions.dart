@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:money_manager/db_functions/category_db/category_db.dart';
 import 'package:money_manager/db_functions/transactions_db/transaction_db.dart';
@@ -20,23 +21,32 @@ class ScreenTransactions extends StatelessWidget {
               itemBuilder: (context, index) {
                 final newTransaction = transactions[index];
                 String date = formatDate(newTransaction);
-                return Card(
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      radius: 38,
-                      child: Text(
-                        date,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontFamily: 'Montserrat'),
+                return Slidable(
+                  startActionPane: ActionPane(
+                    motion: ScrollMotion(),
+                    children: [
+                      SlidableAction(
+                        onPressed: (ctx) {
+                          TransactionDb().deleteTransaction(newTransaction);
+                        },
+                        icon: Icons.delete,
+                        label: 'Delete',
+                        backgroundColor: Color(0xFFFE4A49),
                       ),
-                    ),
-                    title: Text('RS. ${newTransaction.amount}'),
-                    subtitle: Text(newTransaction.category.name),
-                    trailing: IconButton(
-                      onPressed: () {
-                        TransactionDb().deleteTransaction(newTransaction);
-                      },
-                      icon: Icon(Icons.delete, color: Colors.red),
+                    ],
+                  ),
+                  child: Card(
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        radius: 38,
+                        child: Text(
+                          date,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontFamily: 'Montserrat'),
+                        ),
+                      ),
+                      title: Text('RS. ${newTransaction.amount}'),
+                      subtitle: Text(newTransaction.category.name),
                     ),
                   ),
                 );
