@@ -6,9 +6,11 @@ const boxName = 'transactionDB';
 
 abstract class TransactionDbFunctions {
   Future<void> insertTransaction(TransactionModel value);
+  Future<List<TransactionModel>> getTransactions();
+  Future deleteTransaction(TransactionModel model);
 }
 
-class TransactionDb implements TransactionDbFunctions {
+class TransactionDb extends ChangeNotifier implements TransactionDbFunctions {
   ValueNotifier<List<TransactionModel>> newTransactionListNotifier =
       ValueNotifier([]);
   late Box<TransactionModel> _transactionBox;
@@ -30,6 +32,33 @@ class TransactionDb implements TransactionDbFunctions {
   @override
   Future<void> insertTransaction(TransactionModel value) async {
     await _transactionBox.add(value);
-    newTransactionListNotifier.value.add(value);
+    refreshUI();
+  }
+
+  @override
+  Future<List<TransactionModel>> getTransactions() async {
+    final transactions = _transactionBox.values.toList();
+    return transactions;
+  }
+
+  @override
+  Future deleteTransaction(TransactionModel model) async {
+    final transactioModel = model;
+    final boxMap = _transactionBox.toMap();
+    for (var map in boxMap.entries) {
+      if (identical(transactioModel, map.value)) {
+        await _transactionBox.delete(map.key);
+        refreshUI();
+        return;
+      }
+    }
+  }
+
+  Future refreshUI() async {
+    final transactionsList = await getTransactions();
+    newTransactionListNotifier.value.clear();
+    transactionsList.sort((a, b) => b.date.compareTo(a.date));
+    newTransactionListNotifier.value.addAll(transactionsList);
+    newTransactionListNotifier.notifyListeners();
   }
 }

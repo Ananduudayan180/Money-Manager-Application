@@ -8,6 +8,7 @@ class ScreenTransactions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TransactionDb().refreshUI();
     return ValueListenableBuilder(
       valueListenable: TransactionDb().newTransactionListNotifier,
       builder:
@@ -30,7 +31,9 @@ class ScreenTransactions extends StatelessWidget {
                     title: Text('RS. ${newTransaction.amount}'),
                     subtitle: Text(newTransaction.category.name),
                     trailing: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        TransactionDb().deleteTransaction(newTransaction);
+                      },
                       icon: Icon(Icons.delete, color: Colors.red),
                     ),
                   ),
