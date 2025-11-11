@@ -3,6 +3,7 @@ import 'package:money_manager/db_functions/category_db/category_db.dart';
 import 'package:money_manager/db_functions/transactions_db/transaction_db.dart';
 import 'package:money_manager/models/category_model/category_model.dart';
 import 'package:money_manager/models/transactions_model/transaction_model.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class AddTransactionsScreen extends StatefulWidget {
   const AddTransactionsScreen({super.key});
@@ -15,124 +16,354 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
   final TextEditingController _purposeController = TextEditingController();
   final TextEditingController _amountController = TextEditingController();
   String _selectedDate = 'Select Date';
-  CategoryType _selectedRadioButton = CategoryType.income;
+  CategoryType _selectedToggleButton = CategoryType.income;
   String? _dropdownValue;
   DateTime? pickedDate;
   CategoryModel? selectedCategoryModel;
+  bool isIncome = true;
+  List<Color> colors = [Colors.purple, Colors.deepOrangeAccent];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(PhosphorIconsRegular.caretLeft),
+        ),
         title: Text(
-          'New Transaction',
-          style: TextStyle(fontFamily: 'Montserrat', color: Colors.white),
+          'NEW TRANSACTION',
+          style: TextStyle(
+            fontFamily: 'Montserrat',
+            color: Colors.black,
+            fontSize: 20,
+          ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.purple,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(15),
-                child: TextFormField(
-                  controller: _purposeController,
-                  decoration: InputDecoration(
-                    labelText: 'Purpose',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(15),
-                child: TextFormField(
-                  controller: _amountController,
-                  decoration: InputDecoration(
-                    labelText: 'Enter Amount',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  datePicker(context);
-                },
-                child: Text(_selectedDate),
-              ),
-              RadioGroup(
-                groupValue: _selectedRadioButton,
-                onChanged: (value) {
-                  if (value == null) {
-                    return;
-                  } else {
-                    setState(() {
-                      _dropdownValue = null;
-                      _selectedRadioButton = value;
-                    });
-                  }
-                },
+                padding: const EdgeInsets.only(top: 12, left: 12),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
-                      children: [
-                        Radio<CategoryType>(value: CategoryType.income),
-                        Text('Income'),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Radio<CategoryType>(value: CategoryType.expense),
-                        Text('Expense'),
-                      ],
+                    Text(
+                      'Purpose',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
                     ),
                   ],
                 ),
               ),
-              DropdownButton(
-                hint: Text('Select category', style: TextStyle(fontSize: 15)),
-                value: _dropdownValue,
-                items:
-                    (_selectedRadioButton == CategoryType.income
-                            ? CategoryDb().incomeCategoryListNotifier
-                            : CategoryDb().expenseCategoryListNotifier)
-                        .value
-                        .map((value) {
-                          return DropdownMenuItem(
-                            value: value.name,
-                            child: Text(value.name),
-                            onTap: () {
-                              selectedCategoryModel = value;
-                            },
-                          );
-                        })
-                        .toList(),
-                onChanged: (value) {
-                  if (value == null) {
-                    return;
-                  }
-                  setState(() {
-                    _dropdownValue = value;
-                  });
-                },
+
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: TextFormField(
+                  controller: _purposeController,
+                  decoration: InputDecoration(
+                    suffixIcon: ShaderMask(
+                      shaderCallback: (bounds) =>
+                          LinearGradient(colors: colors).createShader(bounds),
+                      child: Icon(
+                        PhosphorIconsRegular.sparkle,
+                        color: Colors.white,
+                      ),
+                    ),
+                    labelText: 'Enter', //pursose
+                    labelStyle: TextStyle(fontSize: 15, color: Colors.black54),
+
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(width: 1, color: Colors.black26),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepOrangeAccent),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+
+                    filled: true,
+                    fillColor: Colors.white,
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 14,
+                    ),
+                  ),
+                ),
+              ),
+              // SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.only(left: 12),
+                child: Row(
+                  children: [
+                    Text(
+                      'Enter Amount',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: TextFormField(
+                  keyboardType: TextInputType.numberWithOptions(),
+                  controller: _amountController,
+                  decoration: InputDecoration(
+                    labelText: 'Enter', //amount
+                    labelStyle: TextStyle(fontSize: 15, color: Colors.black54),
+                    suffixIcon: ShaderMask(
+                      shaderCallback: (bounds) =>
+                          LinearGradient(colors: colors).createShader(bounds),
+
+                      child: Icon(
+                        PhosphorIconsRegular.currencyDollarSimple,
+                        color: Colors.white,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: BorderSide(width: 1, color: Colors.black26),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepOrangeAccent),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 14,
+                    ),
+                  ),
+                ),
               ),
 
               Padding(
-                padding: const EdgeInsets.all(15),
-                child: SizedBox(
+                padding: const EdgeInsets.only(left: 12, right: 12),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _dropdownValue = null;
+                            isIncome = true;
+                            _selectedToggleButton = CategoryType.income;
+                          });
+                        },
+                        child: Container(
+                          height: 50,
+                          decoration: BoxDecoration(
+                            gradient: isIncome
+                                ? LinearGradient(colors: colors)
+                                : null,
+                            color: isIncome ? Colors.white : null,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(16),
+                              bottomLeft: Radius.circular(16),
+                            ),
+                            border: !isIncome
+                                ? Border.all(color: Colors.black26)
+                                : null,
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Income',
+                              style: TextStyle(
+                                color: isIncome ? Colors.white : Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _dropdownValue = null;
+                            isIncome = false;
+                            _selectedToggleButton = CategoryType.expense;
+                          });
+                        },
+                        child: Container(
+                          height: 50,
+                          decoration: BoxDecoration(
+                            gradient: !isIncome
+                                ? LinearGradient(colors: colors)
+                                : null,
+                            color: !isIncome ? Colors.white : null,
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(16),
+                              bottomRight: Radius.circular(16),
+                            ),
+                            border: isIncome
+                                ? Border.all(color: Colors.black26)
+                                : null,
+                          ),
+
+                          child: Center(
+                            child: Text(
+                              'Expense',
+                              style: TextStyle(
+                                color: !isIncome ? Colors.white : Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 15),
+
+                    //select date
+                    OutlinedButton.icon(
+                      icon: ShaderMask(
+                        shaderCallback: (bounds) {
+                          return LinearGradient(
+                            colors: colors,
+                          ).createShader(bounds);
+                        },
+                        child: Icon(
+                          PhosphorIconsRegular.calendar,
+                          color: Colors.white,
+                        ),
+                      ),
+                      onPressed: () {
+                        datePicker(context);
+                      },
+                      label: Text(
+                        _selectedDate,
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      style: OutlinedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 15,
+                          horizontal: 25,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        side: BorderSide(color: Colors.black26),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              Padding(
+                padding: EdgeInsets.all(12),
+                child: Row(
+                  children: [
+                    Text(
+                      'Select Category',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
+                child: DropdownButtonFormField(
+                  icon: ShaderMask(
+                    shaderCallback: (bounds) {
+                      return LinearGradient(
+                        colors: colors,
+                      ).createShader(bounds);
+                    },
+                    child: Icon(
+                      PhosphorIconsRegular.caretUpDown,
+                      color: Colors.white,
+                    ),
+                  ),
+
+                  hint: Text(
+                    'Select any category',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 14,
+                    ),
+
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: BorderSide(width: 1, color: Colors.black26),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepOrangeAccent),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                  ),
+                  initialValue: _dropdownValue,
+                  items:
+                      (_selectedToggleButton == CategoryType.income
+                              ? CategoryDb().incomeCategoryListNotifier
+                              : CategoryDb().expenseCategoryListNotifier)
+                          .value
+                          .map((value) {
+                            return DropdownMenuItem(
+                              value: value.name,
+                              child: Text(value.name),
+                              onTap: () {
+                                selectedCategoryModel = value;
+                              },
+                            );
+                          })
+                          .toList(),
+                  onChanged: (value) {
+                    if (value == null) {
+                      return;
+                    }
+                    setState(() {
+                      _dropdownValue = value;
+                    });
+                  },
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 45),
+                child: Container(
                   width: double.infinity,
                   height: 45,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    gradient: LinearGradient(colors: colors),
+                  ),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.purple,
+                      backgroundColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      shadowColor: Colors.transparent,
+                      // surfaceTintColor: Colors.transparent,
+                      // elevation: 4,
                     ),
                     onPressed: () {
                       addNewTransaction();
                     },
                     child: Text(
-                      'Submit',
-                      style: TextStyle(color: Colors.white),
+                      'Submit transactions',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                 ),
@@ -177,7 +408,7 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
     if (_dropdownValue == null) {
       return;
     }
-    if (_selectedDate == 'Select Date') {
+    if (_selectedDate == '') {
       return;
     }
     try {
@@ -190,7 +421,7 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
       purpose: purposeText,
       amount: amount,
       date: pickedDate!,
-      type: _selectedRadioButton,
+      type: _selectedToggleButton,
       category: selectedCategoryModel!,
     );
 
