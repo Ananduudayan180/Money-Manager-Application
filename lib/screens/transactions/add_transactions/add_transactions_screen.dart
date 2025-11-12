@@ -21,7 +21,8 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
   DateTime? pickedDate;
   CategoryModel? selectedCategoryModel;
   bool isIncome = true;
-  List<Color> colors = [Colors.purple, Colors.deepOrangeAccent];
+  List<Color> colors = [Color(0xFF3F51B5), Color(0xFF00BCD4)];
+  Color focusedColor = Color(0xFF0097A7);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,7 +85,7 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
                       borderRadius: BorderRadius.circular(16),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.deepOrangeAccent),
+                      borderSide: BorderSide(color: focusedColor),
                       borderRadius: BorderRadius.circular(16),
                     ),
 
@@ -134,7 +135,7 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
                       borderSide: BorderSide(width: 1, color: Colors.black26),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.deepOrangeAccent),
+                      borderSide: BorderSide(color: focusedColor),
                       borderRadius: BorderRadius.circular(16),
                     ),
 
@@ -303,7 +304,7 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
                       borderSide: BorderSide(width: 1, color: Colors.black26),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.deepOrangeAccent),
+                      borderSide: BorderSide(color: focusedColor),
                       borderRadius: BorderRadius.circular(16),
                     ),
                     fillColor: Colors.white,
