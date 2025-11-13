@@ -1,23 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:money_manager/db_functions/category_db/category_db.dart';
 import 'package:money_manager/models/category_model/category_model.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 ValueNotifier<CategoryType> radioSelectedValue = ValueNotifier(
   CategoryType.income,
 );
 final textController = TextEditingController();
 int values = 0;
+const Color themeColor = Color(0xFF546E7A);
 void addCategory(BuildContext context) {
   showDialog(
     context: context,
     builder: (ctx) {
       return AlertDialog(
-        title: Text('Add category'),
+        shape: BeveledRectangleBorder(
+          borderRadius: BorderRadiusGeometry.circular(8),
+        ),
+        title: Text(
+          'ADD CATEGORY',
+          style: TextStyle(
+            fontFamily: 'Montserrat',
+            color: Colors.black,
+            fontSize: 20,
+          ),
+        ),
         content: TextFormField(
           controller: textController,
           decoration: InputDecoration(
-            border: OutlineInputBorder(),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
             hintText: 'Category type',
+            suffixIcon: Icon(
+              PhosphorIconsRegular.squaresFour,
+              color: themeColor,
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: themeColor),
+              borderRadius: BorderRadius.circular(8),
+            ),
           ),
         ),
         actions: [
@@ -36,10 +56,12 @@ void addCategory(BuildContext context) {
                   child: Column(
                     children: [
                       RadioListTile<CategoryType>(
+                        activeColor: themeColor,
                         value: CategoryType.income,
                         title: Text('Income'),
                       ),
                       RadioListTile<CategoryType>(
+                        activeColor: themeColor,
                         value: CategoryType.expense,
                         title: Text('Expence'),
                       ),
@@ -50,6 +72,9 @@ void addCategory(BuildContext context) {
 
           ElevatedButton(
             onPressed: () {
+              if (textController.text.isEmpty) {
+                return;
+              }
               final category = CategoryModel(
                 id: DateTime.now().microsecondsSinceEpoch.toString(),
                 name: textController.text,
@@ -59,7 +84,14 @@ void addCategory(BuildContext context) {
               textController.clear();
               Navigator.of(ctx).pop();
             },
-            child: Text('Add'),
+
+            style: ElevatedButton.styleFrom(
+              backgroundColor: themeColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+            child: Icon(PhosphorIconsRegular.plusSquare, color: Colors.white),
           ),
         ],
       );
