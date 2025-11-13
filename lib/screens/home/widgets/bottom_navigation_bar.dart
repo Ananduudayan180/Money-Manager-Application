@@ -7,7 +7,7 @@ class HomeBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Color> gradient = [Color(0xFF3F51B5), Color(0xFF00BCD4)];
+    List<Color> gradient = [const Color(0xFF3F51B5), const Color(0xFF00BCD4)];
     return ValueListenableBuilder(
       valueListenable: ScreenHome.bottomNavigationIndex,
       builder: (BuildContext context, int newIndex, child) {
@@ -20,7 +20,7 @@ class HomeBottomNavigationBar extends StatelessWidget {
           },
           items: [
             BottomNavigationBarItem(
-              icon: Icon(
+              icon: const Icon(
                 PhosphorIconsRegular.arrowsLeftRight,
                 color: Colors.black26,
               ),
@@ -29,14 +29,14 @@ class HomeBottomNavigationBar extends StatelessWidget {
                 shaderCallback: (bounds) {
                   return LinearGradient(colors: gradient).createShader(bounds);
                 },
-                child: Icon(
+                child: const Icon(
                   PhosphorIconsRegular.arrowsLeftRight,
                   color: Colors.white,
                 ),
               ),
             ),
             BottomNavigationBarItem(
-              icon: Icon(
+              icon: const Icon(
                 PhosphorIconsRegular.squaresFour,
                 color: Colors.black26,
               ),
@@ -45,7 +45,7 @@ class HomeBottomNavigationBar extends StatelessWidget {
                 shaderCallback: (bounds) {
                   return LinearGradient(colors: gradient).createShader(bounds);
                 },
-                child: Icon(
+                child: const Icon(
                   PhosphorIconsRegular.squaresFour,
                   color: Colors.white,
                 ),

@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       home: ScreenHome(),
       routes: {
         'AddTransactionsScreen': (ctx) {
-          return AddTransactionsScreen();
+          return const AddTransactionsScreen();
         },
       },
     );

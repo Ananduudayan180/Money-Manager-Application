@@ -12,7 +12,7 @@ class ExpenseList extends StatelessWidget {
       valueListenable: CategoryDb().expenseCategoryListNotifier,
       builder: (BuildContext context, List<CategoryModel> category, child) {
         return ListView.separated(
-          padding: EdgeInsets.all(12),
+          padding: const EdgeInsets.all(12),
           itemBuilder: (context, index) {
             return Container(
               decoration: BoxDecoration(
@@ -20,11 +20,11 @@ class ExpenseList extends StatelessWidget {
                   BoxShadow(
                     color: Colors.black.withValues(alpha: 0.08),
                     blurRadius: 12,
-                    offset: Offset(0, 4),
+                    offset: const Offset(0, 4),
                   ),
                 ],
                 borderRadius: BorderRadius.circular(8),
-                color: Color(0xFFE8EAED), //0xFFE8EAED
+                color: const Color(0xFFE8EAED), //0xFFE8EAED
               ),
               child: ListTile(
                 title: Text(category[index].name),
@@ -33,7 +33,7 @@ class ExpenseList extends StatelessWidget {
                     final id = category[index].id;
                     CategoryDb().deleteCategory(id);
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     PhosphorIconsRegular.trashSimple,
                     color: Color(0xFFF44336),
                   ),
@@ -42,7 +42,7 @@ class ExpenseList extends StatelessWidget {
             );
           },
           separatorBuilder: (ctx, index) {
-            return SizedBox(height: 12);
+            return const SizedBox(height: 12);
           },
           itemCount: category.length,
         );

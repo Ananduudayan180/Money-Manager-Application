@@ -21,8 +21,8 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
   DateTime? pickedDate;
   CategoryModel? selectedCategoryModel;
   bool isIncome = true;
-  List<Color> colors = [Color(0xFF3F51B5), Color(0xFF00BCD4)];
-  Color focusedColor = Color(0xFF0097A7);
+  List<Color> colors = [const Color(0xFF3F51B5), const Color(0xFF00BCD4)];
+  Color focusedColor = const Color(0xFF0097A7);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,9 +33,9 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          icon: Icon(PhosphorIconsRegular.caretLeft),
+          icon: const Icon(PhosphorIconsRegular.caretLeft),
         ),
-        title: Text(
+        title: const Text(
           'NEW TRANSACTION',
           style: TextStyle(
             fontFamily: 'Montserrat',
@@ -49,8 +49,8 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 12, left: 12),
+              const Padding(
+                padding: EdgeInsets.only(top: 12, left: 12),
                 child: Row(
                   children: [
                     Text(
@@ -72,16 +72,16 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
                     suffixIcon: ShaderMask(
                       shaderCallback: (bounds) =>
                           LinearGradient(colors: colors).createShader(bounds),
-                      child: Icon(
+                      child: const Icon(
                         PhosphorIconsRegular.sparkle,
                         color: Colors.white,
                       ),
                     ),
                     labelText: 'Enter', //pursose
-                    labelStyle: TextStyle(fontSize: 15, color: Colors.black54),
+                    labelStyle: const TextStyle(fontSize: 15, color: Colors.black54),
 
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(width: 1, color: Colors.black26),
+                      borderSide: const BorderSide(width: 1, color: Colors.black26),
                       borderRadius: BorderRadius.circular(16),
                     ),
                     focusedBorder: OutlineInputBorder(
@@ -91,7 +91,7 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
 
                     filled: true,
                     fillColor: Colors.white,
-                    contentPadding: EdgeInsets.symmetric(
+                    contentPadding: const EdgeInsets.symmetric(
                       horizontal: 16,
                       vertical: 14,
                     ),
@@ -99,8 +99,8 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
                 ),
               ),
               // SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.only(left: 12),
+              const Padding(
+                padding: EdgeInsets.only(left: 12),
                 child: Row(
                   children: [
                     Text(
@@ -116,30 +116,30 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
               Padding(
                 padding: const EdgeInsets.all(12),
                 child: TextFormField(
-                  keyboardType: TextInputType.numberWithOptions(),
+                  keyboardType: const TextInputType.numberWithOptions(),
                   controller: _amountController,
                   decoration: InputDecoration(
                     labelText: 'Enter', //amount
-                    labelStyle: TextStyle(fontSize: 15, color: Colors.black54),
+                    labelStyle: const TextStyle(fontSize: 15, color: Colors.black54),
                     suffixIcon: ShaderMask(
                       shaderCallback: (bounds) =>
                           LinearGradient(colors: colors).createShader(bounds),
 
-                      child: Icon(
+                      child: const Icon(
                         PhosphorIconsRegular.currencyDollarSimple,
                         color: Colors.white,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
-                      borderSide: BorderSide(width: 1, color: Colors.black26),
+                      borderSide: const BorderSide(width: 1, color: Colors.black26),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: focusedColor),
                       borderRadius: BorderRadius.circular(16),
                     ),
 
-                    contentPadding: EdgeInsets.symmetric(
+                    contentPadding: const EdgeInsets.symmetric(
                       horizontal: 16,
                       vertical: 14,
                     ),
@@ -168,7 +168,7 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
                                 ? LinearGradient(colors: colors)
                                 : null,
                             color: isIncome ? Colors.white : null,
-                            borderRadius: BorderRadius.only(
+                            borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(16),
                               bottomLeft: Radius.circular(16),
                             ),
@@ -203,7 +203,7 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
                                 ? LinearGradient(colors: colors)
                                 : null,
                             color: !isIncome ? Colors.white : null,
-                            borderRadius: BorderRadius.only(
+                            borderRadius: const BorderRadius.only(
                               topRight: Radius.circular(16),
                               bottomRight: Radius.circular(16),
                             ),
@@ -223,7 +223,7 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(width: 15),
+                    const SizedBox(width: 15),
 
                     //select date
                     OutlinedButton.icon(
@@ -233,7 +233,7 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
                             colors: colors,
                           ).createShader(bounds);
                         },
-                        child: Icon(
+                        child: const Icon(
                           PhosphorIconsRegular.calendar,
                           color: Colors.white,
                         ),
@@ -243,24 +243,24 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
                       },
                       label: Text(
                         _selectedDate,
-                        style: TextStyle(color: Colors.black),
+                        style: const TextStyle(color: Colors.black),
                       ),
                       style: OutlinedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                           vertical: 15,
                           horizontal: 25,
                         ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
                         ),
-                        side: BorderSide(color: Colors.black26),
+                        side: const BorderSide(color: Colors.black26),
                       ),
                     ),
                   ],
                 ),
               ),
 
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(12),
                 child: Row(
                   children: [
@@ -283,25 +283,25 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
                         colors: colors,
                       ).createShader(bounds);
                     },
-                    child: Icon(
+                    child: const Icon(
                       PhosphorIconsRegular.caretUpDown,
                       color: Colors.white,
                     ),
                   ),
 
-                  hint: Text(
+                  hint: const Text(
                     'Select any category',
                     style: TextStyle(fontSize: 15),
                   ),
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(
+                    contentPadding: const EdgeInsets.symmetric(
                       horizontal: 16,
                       vertical: 14,
                     ),
 
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
-                      borderSide: BorderSide(width: 1, color: Colors.black26),
+                      borderSide: const BorderSide(width: 1, color: Colors.black26),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: focusedColor),
@@ -359,7 +359,7 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
                     onPressed: () {
                       addNewTransaction();
                     },
-                    child: Text(
+                    child: const Text(
                       'Submit transactions',
                       style: TextStyle(
                         color: Colors.white,
@@ -380,8 +380,8 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
     pickedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime.now().subtract(Duration(days: 30)),
-      lastDate: DateTime.now().add(Duration(days: 3)),
+      firstDate: DateTime.now().subtract(const Duration(days: 30)),
+      lastDate: DateTime.now().add(const Duration(days: 3)),
     );
 
     if (pickedDate != null) {

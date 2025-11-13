@@ -17,7 +17,7 @@ void addCategory(BuildContext context) {
         shape: BeveledRectangleBorder(
           borderRadius: BorderRadiusGeometry.circular(8),
         ),
-        title: Text(
+        title: const Text(
           'ADD CATEGORY',
           style: TextStyle(
             fontFamily: 'Montserrat',
@@ -30,12 +30,12 @@ void addCategory(BuildContext context) {
           decoration: InputDecoration(
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
             hintText: 'Category type',
-            suffixIcon: Icon(
+            suffixIcon: const Icon(
               PhosphorIconsRegular.squaresFour,
               color: themeColor,
             ),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: themeColor),
+              borderSide: const BorderSide(color: themeColor),
               borderRadius: BorderRadius.circular(8),
             ),
           ),
@@ -53,7 +53,7 @@ void addCategory(BuildContext context) {
                       return;
                     }
                   },
-                  child: Column(
+                  child: const Column(
                     children: [
                       RadioListTile<CategoryType>(
                         activeColor: themeColor,
@@ -91,7 +91,7 @@ void addCategory(BuildContext context) {
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
-            child: Icon(PhosphorIconsRegular.plusSquare, color: Colors.white),
+            child: const Icon(PhosphorIconsRegular.plusSquare, color: Colors.white),
           ),
         ],
       );

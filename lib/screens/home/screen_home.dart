@@ -8,12 +8,12 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 class ScreenHome extends StatelessWidget {
   ScreenHome({super.key});
 
-  final pages = [ScreenTransactions(), ScreenCategory()];
+  final pages = [const ScreenTransactions(), const ScreenCategory()];
   static ValueNotifier<int> bottomNavigationIndex = ValueNotifier(0);
 
   @override
   Widget build(BuildContext context) {
-    List<Color> gradient = [Color(0xFF3F51B5), Color(0xFF00BCD4)];
+    List<Color> gradient = [const Color(0xFF3F51B5), const Color(0xFF00BCD4)];
     return Scaffold(
       floatingActionButton: ShaderMask(
         shaderCallback: (bounds) {
@@ -31,10 +31,10 @@ class ScreenHome extends StatelessWidget {
           },
           backgroundColor: Colors.white,
           elevation: 2,
-          child: Icon(PhosphorIconsRegular.plus, color: Colors.black),
+          child: const Icon(PhosphorIconsRegular.plus, color: Colors.black),
         ),
       ),
-      bottomNavigationBar: HomeBottomNavigationBar(),
+      bottomNavigationBar: const HomeBottomNavigationBar(),
       body: ValueListenableBuilder(
         valueListenable: bottomNavigationIndex,
         builder: (BuildContext context, int pageIndex, child) {

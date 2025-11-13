@@ -12,7 +12,7 @@ class ScreenTransactions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Color> gradient = [Color(0xFF3F51B5), Color(0xFF00BCD4)];
+    List<Color> gradient = [const Color(0xFF3F51B5), const Color(0xFF00BCD4)];
 
     TransactionDb().refreshUI();
     CategoryDb().refreshUI();
@@ -69,7 +69,7 @@ class ScreenTransactions extends StatelessWidget {
                         padding: const EdgeInsets.only(bottom: 12),
                         child: Slidable(
                           startActionPane: ActionPane(
-                            motion: ScrollMotion(),
+                            motion: const ScrollMotion(),
                             children: [
                               SlidableAction(
                                 onPressed: (ctx) {
@@ -79,7 +79,7 @@ class ScreenTransactions extends StatelessWidget {
                                 },
                                 icon: Icons.delete,
                                 label: 'Delete',
-                                backgroundColor: Color(0xFFFE4A49),
+                                backgroundColor: const Color(0xFFFE4A49),
                               ),
                             ],
                           ),
@@ -93,7 +93,7 @@ class ScreenTransactions extends StatelessWidget {
                               //     Colors.deepOrangeAccent,
                               //   ],
                               // ),
-                              boxShadow: [
+                              boxShadow: const [
                                 BoxShadow(
                                   color: Colors.black12,
                                   offset: Offset(0, 4),
@@ -104,7 +104,7 @@ class ScreenTransactions extends StatelessWidget {
 
                             child: ListTile(
                               leading: Container(
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                   horizontal: 12,
                                   vertical: 10,
                                 ),
@@ -118,7 +118,7 @@ class ScreenTransactions extends StatelessWidget {
                                 child: Text(
                                   date,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontSize: 12,
                                   ),
@@ -131,13 +131,13 @@ class ScreenTransactions extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                   color:
                                       newTransaction.type == CategoryType.income
-                                      ? Color(0xFF21C55D)
-                                      : Color(0xFFEF4444),
+                                      ? const Color(0xFF21C55D)
+                                      : const Color(0xFFEF4444),
                                 ),
                               ),
                               subtitle: Text(
                                 newTransaction.purpose,
-                                style: TextStyle(color: Colors.black54),
+                                style: const TextStyle(color: Colors.black54),
                               ),
 
                               trailing: Icon(

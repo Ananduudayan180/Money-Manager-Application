@@ -7,8 +7,8 @@ class ScreenCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Color> gradient = [Color(0xFF3F51B5), Color(0xFF00BCD4)];
-    Color singleTheme = Color(0xFF006FAD);
+    List<Color> gradient = [const Color(0xFF3F51B5), const Color(0xFF00BCD4)];
+    Color singleTheme = const Color(0xFF006FAD);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -31,16 +31,16 @@ class ScreenCategory extends StatelessWidget {
           children: [
             TabBar(
               dividerColor: Colors.transparent,
-              labelStyle: TextStyle(fontWeight: FontWeight.w400),
+              labelStyle: const TextStyle(fontWeight: FontWeight.w400),
               unselectedLabelColor: Colors.black,
               labelColor: singleTheme,
               indicatorColor: singleTheme,
-              tabs: [
+              tabs: const [
                 Tab(text: 'Income'),
                 Tab(text: 'Expense'),
               ],
             ),
-            Expanded(
+            const Expanded(
               child: TabBarView(children: [IncomeList(), ExpenseList()]),
             ),
           ],
