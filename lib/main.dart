@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
       title: 'Money Manager',
       theme: ThemeData(
         fontFamily: 'OpenSans',
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
+        useMaterial3: true,
+        brightness: Brightness.light,
       ),
       home: ScreenHome(),
       routes: {
