@@ -412,6 +412,9 @@ class _AddTransactionsScreenState extends State<AddTransactionsScreen> {
     if (_selectedDate == '') {
       return;
     }
+    if (pickedDate == null) {
+      return;
+    }
     try {
       amount = double.parse(amountText);
     } catch (e) {
