@@ -1,3 +1,7 @@
+![Flutter](https://img.shields.io/badge/Flutter-3.24-blue)
+![Hive](https://img.shields.io/badge/Hive-Database-yellow)
+![License: MIT](https://img.shields.io/badge/License-MIT-green)
+
 # 💰 Money Manager Application
 
 A simple and modern **Flutter** application to manage your personal income and expenses.  
@@ -20,7 +24,8 @@ Built using **Hive** for offline data storage and a clean, responsive UI design.
 - 📊 View recent transactions sorted by date  
 - 🗂 Data stored locally using **Hive**  
 - 🎨 Gradient-based modern UI  
-- ⚡ Fast performance — works fully offline  
+- ⚡ Fast performance — works fully offline
+- 🔄 Reactive UI using ValueListenableBuilder  
 
 ---
 
@@ -39,7 +44,8 @@ Built using **Hive** for offline data storage and a clean, responsive UI design.
 
 ## 📂 Folder Structure
 
-┃lib/
+```bash
+lib/
 ┣ db_functions/
 ┃ ┣ category_db/
 ┃ ┃ ┗ category_db.dart
@@ -56,15 +62,17 @@ Built using **Hive** for offline data storage and a clean, responsive UI design.
 ┃ ┣ home/
 ┃ ┣ transactions/
 ┃ ┗ categories/
-┣ main.dart
+┗ main.dart
+```
 
 ---
 
 ## 🚀 How to Run the Project
 
 1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Ananduudayan180/money_manager_app.git
+```bash
+git clone https://github.com/Ananduudayan180/money_manager_app.git
+```
    
 2. **Go to project folder**
 ```bash
@@ -81,13 +89,15 @@ flutter pub get
 flutter run
 ```
 
-🧠 Developer
+⚠️ **Make sure to initialize Hive and register adapters in main.dart before running the app.**
+
+## 👨‍💻 Developer
 
 👨‍💻 Author: Anandu Udayan
 📧 Email: anandhuudayan180@gmail.com
 📱 Built with ❤️ using Flutter
 
-🪶 License
+## 🪶 License
 
 This project is licensed under the MIT License — free to use and modify.
 
